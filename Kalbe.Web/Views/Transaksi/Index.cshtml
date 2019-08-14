@@ -1,0 +1,637 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style type="text/css">
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+        [data-validation-message].message-visible {
+            display: block;
+        }
+
+    .blueborder {
+        border-color: blue;
+    }
+
+        .blueborder.invalid {
+            border-color: red;
+        }
+
+    .input-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+</style>
+
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .biru {
+        color: #000080;
+        font-weight: bold;
+    }
+
+    .birutext {
+        color: #000080;
+    }
+
+    .birubg {
+        background-color: #000080;
+        color: white;
+    }
+
+    .merahbg {
+        background-color: #A92E13;
+        color: white;
+    }
+
+    .biruwoy {
+        background-color: #000080;
+        color: white;
+    }
+
+        .biruwoy:hover {
+            background-color: blue;
+        }
+
+    .orenwoy {
+        background-color: orangered;
+        color: white;
+    }
+
+        .orenwoy:hover {
+            background-color: red;
+        }
+
+    .merahwoy {
+        background-color: #A92E13;
+        color: white;
+    }
+
+        .merahwoy:hover {
+            background-color: red;
+            color: white;
+        }
+
+    .table {
+        color: #000080;
+    }
+
+    .lebarwoy {
+        position: center;
+        width: 800px;
+    }
+
+    .tengahwoy {
+        padding-right: 800px;
+    }
+
+    .tengahpls {
+        background-color: none;
+        padding-top: 150px;
+        width: 500px;
+    }
+
+    .lebarpls {
+        margin-left: 50px;
+        width: 500px;
+        height: 400px;
+    }
+
+    .merahtext {
+        color: #A92E13;
+    }
+</style>
+
+<h2 style="color:#000080">Form Transaksi</h2>
+<form id="idFrmTransaction">
+    <table class="table table-responsive">
+        <tr>
+            <td><label for="idInpNoFaktur">Nomor Transaksi</label></td>
+            <td>:</td>
+            <td><input type="text" name="NoFaktur" data-validate="required" class="form-control" id="idInpNoFaktur" placeholder="Invoice Number">
+                <small role="alert" aria-hidden="true" data-validation-message="required">NoFaktur Harus Diisi. </small></td>
+            <td><input type="text" readonly name="NoFakturBlnThn" class="form-control" id="idInpNoFakturBlnThn" placeholder="Month/Year"></td>
+        </tr>
+        <tr>
+            <td><label for="idInpTglPenjualan">Tgl Transaksi</label></td>
+            <td>:</td>
+            <td>
+                <input type="text" name="TransactionDate" data-validate="required" class="form-control" id="idInpTglPenjualan" placeholder="Date Transaction">
+                <small role="alert" aria-hidden="true" data-validation-message="required">TransactionDate Harus Diisi. </small>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label for="idCustomer" class="name-clr">Nama Customer *</label></td>
+            <td>:</td>
+            <td>
+                <br />
+                <select type="text" name="NamaCustomer" data-validate="required" class="form-control form-custom" id="idCustomer" placeholder="-Pilih-">
+                    @*<option value="1">Irfan</option>
+                        <option value="2">Latifa</option>
+                        <option value="3">Harsan</option>
+                        <option value="4">Walid</option>*@
+                </select>
+                <small role="alert" aria-hidden="true" data-validation-message="required">Nama Customer Harus Dipilih. </small>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Lihat Data Barang</button></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Data Barang</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Nama Barang</td>
+                                <td>Harga Satuan</td>
+                                <td>Aksi</td>
+                            </tr>
+                        </thead>
+                        <tbody id="idTblBodyBarang"></tbody>
+                    </table>
+
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <!-- End Of Modal -->
+
+
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>NO ID</td>
+                <td>Nama Barang</td>
+                <td>Stok</td>
+                <td>Qty</td>
+                <td>Harga Satuan</td>
+                <td>Jumlah</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyTransaction">
+
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="table table-responsive">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td width="300">
+                <input type="text" name="Total" class="form-control" readonly id="idInpTotalHarga" placeholder="Total Harga" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td width="300">
+                <input type="text" class="form-control" id="idInpBayar" placeholder="Bayar" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td width="300">
+                <input type="text" name="CashReturn" class="form-control" readonly id="idInpSisa" placeholder="Sisa" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td width="300">
+                <button type="button" class="btn btn-success pull-right" id="idBtnSubmitTransaction">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        $('#idBtnCloseCreateBarang').click(function () {
+            $('#idMdlCreateBarang').close;
+            location.reload();
+        });
+
+        $("#idInpTglPenjualan").datepicker({ //datepicker
+            minDate: 0,
+            dateFormat: "yy-mm-dd"
+        }).datepicker("setDate", new Date());
+        $('#idInpNoFaktur').mask('0000/Trans/'); //mask no faktur
+        $('#idInpNoFakturBlnThn').datepicker({
+            minDate: 0,
+            dateFormat: "mm/yy"
+        }).datepicker("setDate", new Date());
+
+        var vSelect = '<option value="">' + "-Pilih Customer-" + '</option>';
+        $.ajax({
+            url: '/Transaksi/Select',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) {
+                    vSelect = vSelect +
+                        '<option value="' + d.NamaCustomer + '">' +
+                        d.NamaCustomer +
+                        '</option>';
+                });
+                $('#idCustomer').append(vSelect);
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        var vStrHtml = '';
+        var vCtr = 0;
+        var vTkp = true;
+        debugger;
+        $.ajax({
+            url: '/Barang/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) {
+                    vStrHtml = vStrHtml + '<tr>' +
+                        '<td>' + d.NamaBarang + '</td>' +
+                        '<td>' + d.Harga + '</td>' +
+                        '<td><button type = "button" class="btn btn-primary clBtnTambahBarang" dataBarang=\' ' + JSON.stringify(d) + ' \' >+</buttton></td>' +
+                        '</tr>';
+                });
+
+                $('#idTblBodyBarang').append(vStrHtml);
+
+                var vJmlBarang = 0;
+
+                $('.clBtnTambahBarang').click(function () {
+                    debugger;
+
+                    var vDataBarangDetail = JSON.parse($(this).attr('dataBarang'));
+                    var vHargaBarang = vDataBarangDetail.Harga;
+                    var vStrHtmlTransaksi = '';
+                    var sum = 0;
+                    
+
+                    debugger;
+
+                    $('.clNmBarang').each(function (i, d) {
+                        debugger;
+                        if (vDataBarangDetail.ID == parseInt($(this).attr('dataID'))) {
+                            vTkp = false;
+                            
+
+                            vJmlBarang = $(this).parent().parent().find('td input:text.clJmlBarang').val();
+                            vJmlBarang++;
+                            $(this).parent().parent().find('td input:text.clJmlBarang').val(vJmlBarang);
+                            vHargaBarang = vJmlBarang * vHargaBarang;
+                            $(this).parent().parent().find('td input:text.clHargaBarang').val(vHargaBarang);
+                            debugger;
+                        }
+                    });
+
+                    $('.clStokBarang').each(function (i, d) {
+                        debugger;
+                        if (vDataBarangDetail.ID == parseInt($(this).attr('dataID'))) {
+                            vTkp = false;
+
+
+                            vJmlBarang = $(this).parent().parent().find('td input:text.clJmlBarang').val();
+                            vJmlBarang++;
+                            $(this).parent().parent().find('td input:text.clJmlBarang').val(vJmlBarang);
+                            vHargaBarang = vJmlBarang * vHargaBarang;
+                            $(this).parent().parent().find('td input:text.clHargaBarang').val(vHargaBarang);
+                            debugger;
+                        }
+                    });
+
+
+                    if (vTkp == false) {
+                        debugger;
+
+                        vCtr = 1;
+                        vTkp = true;
+                    }
+                    else {
+                        debugger;
+                        vCtr = 0;
+                    }
+
+
+                    if (vCtr == 0) {
+                        debugger;
+                        vJmlBarang = 1;
+                        
+
+                        vStrHtmlTransaksi = vStrHtmlTransaksi + '<tr>' +
+                            '<td>' +
+                            '<input type="text" name="clIdBarang" class="clNomorBarang" value="' + vDataBarangDetail.ID + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<input type="text" class="clNmBarang" dataID="' + vDataBarangDetail.ID + '" value="' + vDataBarangDetail.NamaBarang + '" />' +
+                            '<input type="hidden" name="TrxDetail[0].BarangID" class="clIdBarang" value="' + vDataBarangDetail.ID + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<input type="text" name="TrxDetail[3].Stok" class="clStokBarang" value="' + vDataBarangDetail.Stok + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<input type="text" class="clJmlBarang" name="TrxDetail[0].Quantity" value="' + vJmlBarang + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<input type="text" name="Harga" class="clHargaSatuankBarang" value="' + vDataBarangDetail.Harga + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<input type="text" class="clHargaBarang" value="' + vHargaBarang + '" />' +
+                            '</td>' +
+
+                            '<td>' +
+                            '<button type="button" class="btn btn-danger clBtnDeleteBarang" >-</button>' +
+                            '</td>' +
+
+                            '</tr>';
+                        $('#idTblBodyTransaction').append(vStrHtmlTransaksi);
+                        reIndexTable();
+                        reIndexTableQuantity();
+                    }
+
+
+                    $('.clBtnDeleteBarang').click(function () {
+                        var vAmbilHarga = $(this).parent().parent().find('td input:text.clHargaBarang').val();
+                        $(this).parent().parent().remove();
+                        sum -= vAmbilHarga;
+                        $("#idInpTotalHarga").val(sum);
+                        debugger;
+                    });
+
+                    $('.clHargaBarang').each(function (i, d) {
+                        debugger;
+                        sum += parseInt($(this).val());
+                        $("#idInpTotalHarga").val(sum);
+                    })
+                });
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        $('#idInpBayar').keypress(function (event) {
+            if (event.which == 13 || event.keyCode == 13) {
+                debugger;
+                var total = parseInt($('#idInpTotalHarga').val());
+                var bayar = parseInt($('#idInpBayar').val());
+                var kembali = bayar - total;
+                if (bayar >= total) {
+                    $('#idInpSisa').val(kembali);
+                }
+                else {
+                    alert("Uang Bayar Anda Kurang");
+                    $('#idInpSisa').val('Uang Kurang');
+                }
+            }
+        });
+
+        $('#idBtnSubmitTransaction').click(function () {
+            debugger;
+            var vDataTransaction = $('#idFrmTransaction').serialize();
+
+            $.ajax({
+                url: '/Transaksi/SaveTransaction',
+                data: vDataTransaction,
+                method: 'Post',
+                success: function (mdl) {
+                    debugger;
+                    if (mdl.hasil == "Berhasil") {
+                        alert("Data berhasil disimpan");
+
+                        $('#idMdlCreateBarang').close;
+                        location.reload();
+                    }
+                    else {
+                        alert("Data gagal disimpan");
+                    }
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            })
+        });
+
+    });
+
+    function reIndexTable() {
+        var rowCount = $('#idTblBodyTransaction tr').length;
+
+        if (rowCount > 0) {
+
+            var idx = 0;
+
+            $.each($("#idTblBodyTransaction").find("tr"), function (i, val) {
+
+                var vIdBarang = $(this).find(":input[name*='.BarangID']");
+                $(vIdBarang).attr("name", vIdBarang.attr("name").replace(/\[.*?]\s?/g, "[" + idx + "]"));
+
+                idx += 1;
+
+            });
+        }
+    }
+
+
+    function reIndexTableQuantity() {
+        var rowCount = $('#idTblBodyTransaction tr').length;
+
+        if (rowCount > 0) {
+
+            var idx = 0;
+
+            $.each($("#idTblBodyTransaction").find("tr"), function (i, val) {
+
+                var vQuantityBarang = $(this).find(":input[name*='.Quantity']");
+                $(vQuantityBarang).attr("name", vQuantityBarang.attr("name").replace(/\[.*?]\s?/g, "[" + idx + "]"));
+
+                idx += 1;
+            })
+        }
+    }
+
+</script>
+
+<script>
+// (1) Defining our validator-functions
+//     for later use. They return
+//     "true", if the validation passes.
+const validators = {
+  // Checks the field for emptiness.
+  required: element => element.value.length > 0,
+  // Checks if there are no numbers
+  // in the field.
+  noNumbers: element => !element.value.match(/[0-9]/g),
+  // Checks if the value is shorter
+  // than 10 characters.
+  maxLength: element => element.value.length <= 10,
+  // Checks if the checkbox is checked.
+  mustBeChecked: element => element.checked
+};
+// (2) Check the contents of an input,
+//     get all validators, and mark
+//     the field in case of invalidity.
+function validateElement(element) {
+  resetValidation(element);
+  // Store all validators from the
+  // data-validate-attribute into
+  // an array.
+  const rules = element.dataset.validate.split(" ");
+  // For every validator on the
+  // field...
+  rules.forEach(rule => {
+    // ...find the corresponding
+    // validator-function from our
+    // object from #1 and call it
+    // with the element as parameter.
+    if (validators[rule](element)) {
+      // If the function returns true, all is fine.
+        debugger;
+        return;
+    } else {
+      // If it returns false, the
+      // validation failed.
+      // In that case, the
+      // markElementInvalid-function
+      // takes care of showing the
+      // error-message.
+      markElementInvalid(element, rule);
+    }
+  });
+}
+// (3) Adds classes to an element,
+//     so it appears invalid. Also
+//     it picks the correct feedback-
+//     message and sets it visible.
+function markElementInvalid(element, validatorName) {
+  element.classList.add("invalid");
+  element.setAttribute("aria-invalid", true);
+  const feedbackMessage = element.parentNode.querySelector(
+    `[data-validation-message=${validatorName}]`
+  );
+  feedbackMessage.classList.add("message-visible");
+  feedbackMessage.setAttribute("aria-hidden", false);
+}
+// (4) Removes all traces of
+//     validation from an element,
+//     like the error-messages and
+//     the styling.
+//     (Pretty much the opposite of #3)
+function resetValidation(element) {
+  element.classList.remove("invalid");
+  element.setAttribute("aria-invalid", false);
+  element.parentNode
+    .querySelectorAll("[data-validation-message]")
+    .forEach(e => {
+      e.classList.remove("message-visible");
+      e.setAttribute("aria-hidden", true);
+    });
+}
+// (5) Store the form and its
+//     inputs in variables.
+const form = document.getElementById("idFrmTransaction");
+const formElements = Array.from(form.elements);
+// (6) Every input gets an
+//     event-listener attached.
+formElements.forEach(formElement => {
+  // Do nothing if the element has
+  // no data-validate-attribute.
+  if (!formElement.dataset) return;
+  if (!formElement.dataset.validate) return;
+  // Attach the blur-event-listener
+  // to the element.
+  formElement.addEventListener("", () => {
+    // This means, validateElement will
+    // be called everytime the element
+    // loses focus.
+    validateElement(formElement);
+  });
+});
+// (7) We're doing what we did at #3,
+//     only on form-submit, and for
+//     every field.
+form.addEventListener("submit", event => {
+  // Let's assume, everything is fine.
+  let formIsValid = true;
+  form.classList.remove("invalid");
+  // We'll check every field in the form.
+  // (same as #3)
+  formElements.forEach(formElement => {
+    if (!formElement.dataset) return;
+    if (!formElement.dataset.validate) return;
+    validateElement(formElement);
+  });
+  // If there are any "invalid"-classes
+  // after we checked all fields, the form
+  // is invalid...
+  formIsValid = form.querySelectorAll(".invalid").length === 0;
+  // ...and will not be submitted.
+  if (formIsValid === false) {
+    form.classList.add("invalid");
+    event.preventDefault();
+  } else {
+      debugger;
+      simpankalbe();
+  }
+});
+</script>

@@ -1,0 +1,14 @@
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\obj\Debug\Kalbe.Repo.csprojResolveAssemblyReference.cache
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.Repo.dll.config
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.Repo.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.Repo.pdb
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\EntityFramework.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.Model.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.ViewModel.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.Model.pdb
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\Kalbe.ViewModel.pdb
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\EntityFramework.xml
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\obj\Debug\Kalbe.Repo.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Repo\obj\Debug\Kalbe.Repo.pdb

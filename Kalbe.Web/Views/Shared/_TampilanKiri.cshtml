@@ -1,0 +1,93 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .batas-atas{
+            margin-top:10px;
+        }
+        .batas-bawah{
+            padding-left:0px;
+
+        }
+    </style>
+    <style>
+        .widget-menu > li > a:hover {
+            background-color: #eee;
+            color: #000080;
+        }
+    </style>
+</head>
+<body>
+    <div class="span3 batas-atas">
+        <div class="sidebar">
+            <ul id="idSideBar" class="widget widget-menu unstyled batas-atas batas-bawah" style="background-color: white; border-style: solid; border-width: 1px;border-color:#000066;">
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages00">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 1
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages01">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 2
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages02">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 3
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages03">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 4<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                    </a>
+                    <ul id="togglePages03" class="collapse unstyled">
+                        <li><a href="#">Sub Menu 4.1</a></li>
+                        <li><a href="#">Sub Menu 4.2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages04">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 5
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages05">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 6
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages06">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 7
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--/.sidebar-->
+    </div>
+    <aside id="sidebar" class="main-sidebar">
+        <!--/.span3-->
+    </aside>
+</body>
+</html>
+<script>
+    //$(document).ready(function () {
+    //    var vStrHtml = '';
+    //    var id = parseInt(1);
+    //    $.ajax({
+    //        url: '/Home/Tampil',
+    //        method: 'Post',
+    //        data: { ID: id },
+    //        success: function (hom) {
+    //            debugger;
+    //            $.each(hom, function (i, d) {
+    //                debugger;
+    //                vStrHtml = vStrHtml + '<li>' +
+    //                    '<a class="collapsed" data-toggle="collapse" href="#togglePages0' + d.id+ '">' +
+    //                    '⬤' + '&nbsp;&nbsp;&nbsp;' + d.title + '</a>' +
+    //                    '</li>';
+    //            });
+
+    //            $('#idSideBar').append(vStrHtml);
+    //        }
+    //    });
+    //});
+</script>

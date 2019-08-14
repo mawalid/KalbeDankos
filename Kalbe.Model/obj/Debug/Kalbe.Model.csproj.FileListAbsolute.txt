@@ -1,0 +1,10 @@
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\obj\Debug\Kalbe.Model.csprojResolveAssemblyReference.cache
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\Kalbe.Model.dll.config
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\Kalbe.Model.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\Kalbe.Model.pdb
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\EntityFramework.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\EntityFramework.xml
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\obj\Debug\Kalbe.Model.dll
+C:\Users\PC\Downloads\KALBEFARMA\KalbeFarma\Kalbe.Model\obj\Debug\Kalbe.Model.pdb

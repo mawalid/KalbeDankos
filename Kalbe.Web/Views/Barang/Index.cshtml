@@ -1,0 +1,326 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+        [data-validation-message].message-visible {
+            display: block;
+        }
+
+    .blueborder {
+        border-color: blue;
+    }
+
+        .blueborder.invalid {
+            border-color: red;
+        }
+
+    .input-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+</style>
+
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .biru {
+        color: #000080;
+        font-weight: bold;
+    }
+
+    .birutext {
+        color: #000080;
+    }
+
+    .birubg {
+        background-color: #000080;
+        color: white;
+    }
+
+    .merahbg {
+        background-color: #A92E13;
+        color: white;
+    }
+
+    .biruwoy {
+        background-color: #000080;
+        color: white;
+    }
+
+        .biruwoy:hover {
+            background-color: blue;
+        }
+
+    .orenwoy {
+        background-color: orangered;
+        color: white;
+    }
+
+        .orenwoy:hover {
+            background-color: red;
+        }
+
+    .merahwoy {
+        background-color: #A92E13;
+        color: white;
+    }
+
+        .merahwoy:hover {
+            background-color: red;
+            color: white;
+        }
+
+    .table {
+        color: #000080;
+    }
+
+    .lebarwoy {
+        position: center;
+        width: 800px;
+    }
+
+    .tengahwoy {
+        padding-right: 800px;
+    }
+
+    .tengahpls {
+        background-color: none;
+        padding-top: 150px;
+        width: 500px;
+    }
+
+    .lebarpls {
+        margin-left: 50px;
+        width: 500px;
+        height: 400px;
+    }
+
+    .merahtext {
+        color: #A92E13;
+    }
+</style>
+
+<h2 style="color:#000080">Form Barang</h2>
+<div class="table-responsive" style="height:600px">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom: 3px solid #000080">
+                <td colspan="6">
+
+
+
+                    <h4 class="biru">Barang<button type="button" class="btn btn-link" id="idBtnCreateBarang"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom: 3px solid #000080">
+                <td>KODE BARANG</td>
+                <td>NAMA BARANG</td>
+                <td>SATUAN</td>
+                <td>STOK</td>
+                <td>HARGA</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyBarang"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreateBarang" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">
+                    Tambah Barang
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>*@
+                    <button class="pull-right" id="idBtnCloseCreateBarang" style="background-color:transparent; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateBarang" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlEditBarang" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">
+                    Ubah Barang
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>*@
+                    <button class="pull-right" id="idBtnCloseEditBarang" style="background-color:transparent; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyEditBarang" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlHapusBarang" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content">
+            <div class="modal-header merahbg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Hapus Barang ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusBarang">
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    $('#idBtnCloseCreateBarang').click(function () {
+        $('#idMdlCreateBarang').close;
+        location.reload();
+    });
+
+    $('#idBtnCloseEditBarang').click(function () {
+        $('#idMdlCreateBarang').close;
+        location.reload();
+    });
+
+    var vStrHtml = "";
+    $(document).ready(function () {
+        debugger
+        $.ajax({
+            url: '/Barang/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+
+                $.each(mdl, function (i, d) {
+                    debugger;
+
+                    vStrHtml = vStrHtml + '<tr>' +
+                        '<td style="border-top: 1px solid #000080">' + d.KodeBarang + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.NamaBarang + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.Satuan + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.Stok + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.Harga + '</td>' +
+                        '<td class="dropdown" style="border-top: 1px solid #000080">' +
+                        '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                        '<span class="caret"></span>' +
+                        '</button>' +
+                        '<ul class="dropdown-menu">' +
+                        '<li><a class="UbahBarang" dataID="' + d.ID + '" href="#">Ubah</a></li>' +
+                        '<li><a class="HapusBarangConfirm" dataID="' + d.ID + '" href="#">Hapus</a></li>' +
+                        '</ul>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#idTblBodyBarang').append(vStrHtml);
+
+                $('.UbahBarang').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Barang/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditBarang').empty();
+                            $('#idBodyEditBarang').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlEditBarang').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+
+                $('.HapusBarangConfirm').click(function(){
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Barang/DeleteConfirm',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusBarang').empty();
+                            $('#idBodyHapusBarang').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlHapusBarang').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        $('#idBtnCreateBarang').click(function () {
+            $.ajax({
+                url: '/Barang/Create',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyCreateBarang').empty();
+                    $('#idBodyCreateBarang').append(mdl);
+
+                    $('#idMdlCreateBarang').modal('show');
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+        });
+
+    });
+</script>
+
+
+

@@ -1,0 +1,322 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+        [data-validation-message].message-visible {
+            display: block;
+        }
+
+    .blueborder {
+        border-color: blue;
+    }
+
+        .blueborder.invalid {
+            border-color: red;
+        }
+
+    .input-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+</style>
+
+<style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .biru {
+        color: #000080;
+        font-weight: bold;
+    }
+
+    .birutext {
+        color: #000080;
+    }
+
+    .birubg {
+        background-color: #000080;
+        color: white;
+    }
+
+    .merahbg {
+        background-color: #A92E13;
+        color: white;
+    }
+
+    .biruwoy {
+        background-color: #000080;
+        color: white;
+    }
+
+        .biruwoy:hover {
+            background-color: blue;
+        }
+
+    .orenwoy {
+        background-color: orangered;
+        color: white;
+    }
+
+        .orenwoy:hover {
+            background-color: red;
+        }
+
+    .merahwoy {
+        background-color: #A92E13;
+        color: white;
+    }
+
+        .merahwoy:hover {
+            background-color: red;
+            color: white;
+        }
+
+    .table {
+        color: #000080;
+    }
+
+    .lebarwoy {
+        position: center;
+        width: 800px;
+    }
+
+    .tengahwoy {
+        padding-right: 800px;
+    }
+
+    .tengahpls {
+        background-color: none;
+        padding-top: 150px;
+        width: 500px;
+    }
+
+    .lebarpls {
+        margin-left: 50px;
+        width: 500px;
+        height: 400px;
+    }
+
+    .merahtext {
+        color: #A92E13;
+    }
+</style>
+
+<div class="table-responsive" style="height:600px">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom: 3px solid #000080">
+                <td colspan="5">
+
+
+
+                    <h4 class="biru">Customer<button type="button" class="btn btn-link" id="idBtnCreateCustomer"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom: 3px solid #000080">
+                <td>KODE CUSTOMER</td>
+                <td>NAMA CUSTOMER</td>
+                <td>ALAMAT</td>
+                <td>NPWP</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyCustomer"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreateCustomer" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" style="color: white; opacity:1;">
+                    Tambah Customer
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>*@
+                    <button class="pull-right" id="idBtnCloseCreateCustomer" style="background-color:transparent; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateCustomer" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlEditCustomer" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" style="color: white; opacity:1;">
+                    Ubah Customer
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>*@
+                    <button class="pull-right" id="idBtnCloseEditCustomer" style="background-color:transparent; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyEditCustomer" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlHapusCustomer" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content">
+            <div class="modal-header merahbg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Hapus Customer ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusCustomer">
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $('#idBtnCloseCreateCustomer').click(function () {
+        $('#idMdlCreateCustomer').close;
+        location.reload();
+    });
+
+    $('#idBtnCloseEditCustomer').click(function () {
+        $('#idMdlEditCustomer').close;
+        location.reload();
+    });
+
+    var vStrHtml = "";
+    //$(document).ready(function () {
+        debugger;
+        $.ajax({
+            url: '/Customer/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) {
+                    debugger;
+
+                    vStrHtml = vStrHtml + '<tr>' +
+                        '<td style="border-top: 1px solid #000080">' + d.KodeCustomer + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.NamaCustomer + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.Alamat + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.NPWP + '</td>' +
+                        '<td class="dropdown" style="border-top: 1px solid #000080">' +
+                        '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                        '<span class="caret"></span>' +
+                        '</button>' +
+                        '<ul class="dropdown-menu">' +
+                        '<li><a class="UbahCustomer" dataID="' + d.ID + '" href="#">Ubah</a></li>' +
+                        '<li><a class="HapusCustomerConfirm" dataID="' + d.ID + '" href="#">Hapus</a></li>' +
+                        '</ul>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#idTblBodyCustomer').append(vStrHtml);
+
+                $('.UbahCustomer').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Customer/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditCustomer').empty();
+                            $('#idBodyEditCustomer').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlEditCustomer').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+
+                $('.HapusCustomerConfirm').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Customer/DeleteConfirm',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusCustomer').empty();
+                            $('#idBodyHapusCustomer').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlHapusCustomer').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+    //});
+
+    $('#idBtnCreateCustomer').click(function () {
+        $.ajax({
+            url: '/Customer/Create',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idBodyCreateCustomer').empty();
+                $('#idBodyCreateCustomer').append(mdl);
+
+                $('#idMdlCreateCustomer').modal('show');
+                debugger;
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+    });
+
+
+
+
+</script>
